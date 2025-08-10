@@ -3,9 +3,13 @@
 <body>
 
 <ul>
-  {% for x in mymembers %}
-    <li>{{ x.firstname }}</li>
-  {% endfor %}
+{% with var1=x var2=x %}
+  {% if var1 is var2 %}
+    <h1>YES</h1>
+  {% else %}
+    <h1>NO</h1>
+  {% endif %}
+{% endwith %}
 </ul>
 
 </body>
