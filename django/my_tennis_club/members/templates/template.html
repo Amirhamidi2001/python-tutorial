@@ -4,11 +4,11 @@
 
 <ul>
 {% with var1=x var2=x %}
-  {% if var1 is var2 %}
+  {% comment %} {% if var1 is var2 %} {% endcomment %}
     <h1>YES</h1>
-  {% else %}
+  {% comment %} {% else %} {% endcomment %}
     <h1>NO</h1>
-  {% endif %}
+  {% comment %} {% endif %} {% endcomment %}
 {% endwith %}
 </ul>
 
