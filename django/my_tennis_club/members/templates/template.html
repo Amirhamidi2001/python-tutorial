@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-<ul>
-{% with var1=x var2=x %}
-  {% comment %} {% if var1 is var2 %} {% endcomment %}
-    <h1>YES</h1>
-  {% comment %} {% else %} {% endcomment %}
-    <h1>NO</h1>
-  {% comment %} {% endif %} {% endcomment %}
-{% endwith %}
-</ul>
-
-{% include 'footer.html' %} 
-
-</body>
-</html>
+<table border='1'>
+  <tr>
+    <th>ID</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+  {% for x in mymembers %}
+    <tr>
+      <td>{{ x.id }}</td>
+        <td>{{ x.firstname }}</td>
+      <td>{{ x.lastname }}</td>
+    </tr>
+  {% endfor %}
+</table>
