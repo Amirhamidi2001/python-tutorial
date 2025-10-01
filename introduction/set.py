@@ -164,3 +164,8 @@ print(set3)
 
 set1.symmetric_difference_update(set2)
 print(set1)
+
+# Python frozenset
+x = frozenset({"apple", "banana", "cherry"})
+print(x)
+print(type(x))
