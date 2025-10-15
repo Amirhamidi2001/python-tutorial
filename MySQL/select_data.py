@@ -90,6 +90,63 @@ mydb.commit()
 
 print(mycursor.rowcount, "record(s) deleted")
 
+# Update Table
+sql = "UPDATE customers SET address = 'Canyon 123' WHERE address = 'Valley 345'"
+mycursor.execute(sql)
+mydb.commit()
+
+print(mycursor.rowcount, "record(s) affected")
+
+# Prevent SQL Injection
+sql = "UPDATE customers SET address = %s WHERE address = %s"
+val = ("Valley 345", "Canyon 123")
+mycursor.execute(sql, val)
+mydb.commit()
+
+print(mycursor.rowcount, "record(s) affected")
+
+# Limit the Result
+mycursor.execute("SELECT * FROM customers LIMIT 5")
+myresult = mycursor.fetchall()
+
+for x in myresult:
+    print(x)
+
+# Start From Another Position
+mycursor.execute("SELECT * FROM customers LIMIT 5 OFFSET 2")
+myresult = mycursor.fetchall()
+
+for x in myresult:
+    print(x)
+
+# Join Two or More Tables
+sql = "SELECT \
+  users.name AS user, \
+  products.name AS favorite \
+  FROM users \
+  INNER JOIN products ON users.fav = products.id"
+
+mycursor.execute(sql)
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+    print(x)
+
+# LEFT JOIN
+sql = "SELECT \
+  users.name AS user, \
+  products.name AS favorite \
+  FROM users \
+  LEFT JOIN products ON users.fav = products.id"
+
+# RIGHT JOIN
+sql = "SELECT \
+  users.name AS user, \
+  products.name AS favorite \
+  FROM users \
+  RIGHT JOIN products ON users.fav = products.id"
+
 # Delete a Table
 mycursor = mydb.cursor()
 sql = "DROP TABLE customers"
