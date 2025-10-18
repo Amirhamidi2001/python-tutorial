@@ -22,3 +22,36 @@ for x in mycol.find({}, {"_id": 0, "name": 1, "address": 1}):
 
 for x in mycol.find({}, {"address": 0}):
     print(x)
+
+# Filter the Result
+myquery = {"address": "Park Lane 38"}
+mydoc = mycol.find(myquery)
+
+for x in mydoc:
+    print(x)
+
+# Advanced Query
+myquery = {"address": {"$gt": "S"}}
+mydoc = mycol.find(myquery)
+
+for x in mydoc:
+    print(x)
+
+# Filter With Regular Expressions
+myquery = {"address": {"$regex": "^S"}}
+mydoc = mycol.find(myquery)
+
+for x in mydoc:
+    print(x)
+
+# Sort the Result
+mydoc = mycol.find().sort("name")
+
+for x in mydoc:
+    print(x)
+
+# Sort Descending
+mydoc = mycol.find().sort("name", -1)
+
+for x in mydoc:
+    print(x)
