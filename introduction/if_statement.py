@@ -233,6 +233,7 @@ elif value == 0:
 else:
     print("Positive value")
 
+
 # pass in Other Contexts
 def calculate_discount(price):
     pass
