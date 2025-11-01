@@ -1,6 +1,8 @@
 import requests
 import os
 import mysql.connector
+import matplotlib.pyplot as plt
+import numpy as np
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
@@ -63,3 +65,23 @@ for country in countries:
 
 mydb.commit()
 print("Data inserted successfully!")
+
+sql = "SELECT population, area FROM countries"
+mycursor.execute(sql)
+myresult = mycursor.fetchall()
+
+# Separate columns
+populations = [row[0] for row in myresult]
+areas = [row[1] for row in myresult]
+
+# Filter out invalid or zero values (to avoid log10 errors)
+populations = np.array(populations)
+areas = np.array(areas)
+mask = (populations > 0) & (areas > 0)
+
+# Plot once
+plt.scatter(np.log10(populations[mask]), np.log10(areas[mask]))
+plt.xlabel("log10(Population)")
+plt.ylabel("log10(Area)")
+plt.title("Population vs Area (log scale)")
+plt.show()
